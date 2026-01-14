@@ -1,10 +1,19 @@
-import { Link, NavLink, Outlet } from "react-router-dom";
+import { Link, NavLink, Outlet, useNavigate } from "react-router-dom";
+import { useAuth } from "../contexts/auth/AuthContext";
+import { PATHS } from "../router/paths";
 
 const navBase = "px-3 py-2 rounded-lg";
 const navActive = "bg-slate-900 text-white";
 const navInactive = "text-slate-700 hover:bg-slate-100";
 
 export default function AppLayout() {
+  const { logout } = useAuth();
+  const navigate = useNavigate();
+
+  function handleLogout() {
+    logout();
+    navigate(PATHS.login, { replace: true });
+  }
   return (
     <div className="min-h-screen bg-slate-50 text-slate-900">
       <header className="border-b bg-white">
@@ -33,9 +42,9 @@ export default function AppLayout() {
             </NavLink>
           </nav>
 
-          <Link className="text-sm underline" to="/auth/login">
+          <button className="text-sm underline" onClick={handleLogout}>
             Wyloguj
-          </Link>
+          </button>
         </div>
       </header>
 
