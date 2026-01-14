@@ -1,6 +1,8 @@
 import { Link, NavLink, Outlet, useNavigate } from "react-router-dom";
 import { useAuth } from "../contexts/auth/AuthContext";
 import { PATHS } from "../router/paths";
+import { useLang } from "../i18n/useLang";
+import { useTranslation } from "react-i18next";
 
 const navBase = "px-3 py-2 rounded-lg";
 const navActive = "bg-slate-900 text-white";
@@ -9,6 +11,8 @@ const navInactive = "text-slate-700 hover:bg-slate-100";
 export default function AppLayout() {
   const { logout } = useAuth();
   const navigate = useNavigate();
+  const { lang, toggle } = useLang();
+  const { t } = useTranslation();
 
   function handleLogout() {
     logout();
@@ -30,7 +34,7 @@ export default function AppLayout() {
                 `${navBase} ${isActive ? navActive : navInactive}`
               }
             >
-              Dashboard
+              {t("common.dashboard")}
             </NavLink>
             <NavLink
               to="/app/teams"
@@ -38,12 +42,15 @@ export default function AppLayout() {
                 `${navBase} ${isActive ? navActive : navInactive}`
               }
             >
-              Teams
+              {t("common.teams")}
             </NavLink>
           </nav>
 
           <button className="text-sm underline" onClick={handleLogout}>
-            Wyloguj
+            {t("common.logout")}
+          </button>
+          <button className="text-sm underline" onClick={toggle}>
+            {lang.toUpperCase()}
           </button>
         </div>
       </header>

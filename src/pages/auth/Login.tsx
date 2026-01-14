@@ -1,13 +1,14 @@
 import { Link, useLocation, useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import { useAuth } from "../../contexts/auth/AuthContext";
 import { PATHS } from "../../router/paths";
 
 export default function Login() {
+  const { t } = useTranslation();
   const { login } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
 
-  // jeśli user wszedł na /app/coś i został przerzucony na login, wrócimy tam po zalogowaniu
   const from = (location.state as any)?.from?.pathname || PATHS.app;
 
   function handleLogin() {
@@ -17,31 +18,32 @@ export default function Login() {
 
   return (
     <div>
-      <h1 className="text-2xl font-bold">Logowanie</h1>
+      <h1 className="text-2xl font-bold">{t("auth.titleLogin")}</h1>
 
       <form className="mt-6 space-y-3" onSubmit={(e) => e.preventDefault()}>
         <input
-          className="w-full rounded-xl border border-slate-700 bg-slate-950/40 px-4 py-2 outline-none"
-          placeholder="Email"
+          className="w-full rounded-xl border px-4 py-2"
+          placeholder={t("common.email")}
         />
         <input
-          className="w-full rounded-xl border border-slate-700 bg-slate-950/40 px-4 py-2 outline-none"
-          placeholder="Hasło"
+          className="w-full rounded-xl border px-4 py-2"
+          placeholder={t("common.password")}
           type="password"
         />
+
         <button
           type="button"
           onClick={handleLogin}
-          className="w-full rounded-xl bg-indigo-500 px-4 py-2 font-semibold hover:bg-indigo-400"
+          className="w-full rounded-xl bg-indigo-500 px-4 py-2 font-semibold text-white"
         >
-          Zaloguj
+          {t("common.login")}
         </button>
       </form>
 
-      <p className="mt-4 text-sm text-slate-300">
-        Nie masz konta?{" "}
+      <p className="mt-4 text-sm">
+        {t("auth.noAccount")}{" "}
         <Link to={PATHS.register} className="underline">
-          Zarejestruj się
+          {t("common.register")}
         </Link>
       </p>
     </div>

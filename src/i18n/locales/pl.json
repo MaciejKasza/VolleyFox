@@ -1,0 +1,18 @@
+{
+  "common": {
+    "appName": "VolleyFox",
+    "login": "Zaloguj",
+    "logout": "Wyloguj",
+    "register": "Zarejestruj się",
+    "email": "Email",
+    "password": "Hasło",
+    "dashboard": "Panel",
+    "teams": "Drużyny"
+  },
+  "auth": {
+    "titleLogin": "Logowanie",
+    "titleRegister": "Rejestracja",
+    "noAccount": "Nie masz konta?",
+    "haveAccount": "Masz konto?"
+  }
+}
