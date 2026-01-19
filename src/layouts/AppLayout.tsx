@@ -1,63 +1,94 @@
-import { Link, NavLink, Outlet, useNavigate } from "react-router-dom";
-import { useAuth } from "../contexts/auth/AuthContext";
-import { PATHS } from "../router/paths";
-import { useLang } from "../i18n/useLang";
 import { useTranslation } from "react-i18next";
+import { NavLink, Outlet } from "react-router-dom";
+import { PATHS } from "../router/paths";
 
-const navBase = "px-3 py-2 rounded-lg";
-const navActive = "bg-slate-900 text-white";
-const navInactive = "text-slate-700 hover:bg-slate-100";
+const linkBase =
+  "flex items-center gap-3 rounded-lg px-3 py-2 text-md font-semibold transition";
+const linkActive = "bg-accent text-accentfg";
+const linkInactive = "text-muted hover:bg-surface2 hover:text-fg";
 
 export default function AppLayout() {
-  const { logout } = useAuth();
-  const navigate = useNavigate();
-  const { lang, toggle } = useLang();
   const { t } = useTranslation();
 
-  function handleLogout() {
-    logout();
-    navigate(PATHS.login, { replace: true });
-  }
   return (
-    <div className="min-h-screen bg-slate-50 text-slate-900">
-      <header className="border-b bg-white">
-        <div className="mx-auto max-w-6xl px-4 py-3 flex items-center justify-between">
-          <Link to="/app" className="font-bold">
-            VolleyFox
-          </Link>
+    <div className="h-screen bg-bg text-fg">
+      <div className="grid h-full grid-cols-[260px_1fr]">
+        {/* SIDEBAR (no scroll) */}
+        <aside className="border-r border-border bg-surface">
+          <div className="h-full p-4 flex flex-col">
+            {/* Brand */}
+            <div className="px-2 py-2 text-3xl font-extrabold">
+              {t("common.appName1")}
+              <span className="text-accent">{t("common.appName2")}</span>
+            </div>
 
-          <nav className="flex gap-2">
-            <NavLink
-              to="/app"
-              end
-              className={({ isActive }) =>
-                `${navBase} ${isActive ? navActive : navInactive}`
-              }
-            >
-              {t("common.dashboard")}
-            </NavLink>
-            <NavLink
-              to="/app/teams"
-              className={({ isActive }) =>
-                `${navBase} ${isActive ? navActive : navInactive}`
-              }
-            >
-              {t("common.teams")}
-            </NavLink>
-          </nav>
+            {/* Nav */}
+            <nav className="my-4 flex flex-1 flex-col">
+              <NavLink
+                to={PATHS.app}
+                end
+                className={({ isActive }) =>
+                  `${linkBase} ${isActive ? linkActive : linkInactive}`
+                }
+              >
+                {t("common.nav.dashboard")}
+              </NavLink>
 
-          <button className="text-sm underline" onClick={handleLogout}>
-            {t("common.logout")}
-          </button>
-          <button className="text-sm underline" onClick={toggle}>
-            {lang.toUpperCase()}
-          </button>
-        </div>
-      </header>
+              <NavLink
+                to={PATHS.callendar}
+                className={({ isActive }) =>
+                  `${linkBase} ${isActive ? linkActive : linkInactive}`
+                }
+              >
+                {t("common.nav.callendar")}
+              </NavLink>
+              <NavLink
+                to={PATHS.activities}
+                className={({ isActive }) =>
+                  `${linkBase} ${isActive ? linkActive : linkInactive}`
+                }
+              >
+                {t("common.nav.activities")}
+              </NavLink>
 
-      <main className="mx-auto max-w-6xl px-4 py-6">
-        <Outlet />
-      </main>
+              {/* Spacer */}
+              <div className="flex-1" />
+
+              <NavLink
+                to={PATHS.profile}
+                className={({ isActive }) =>
+                  `${linkBase} ${isActive ? linkActive : linkInactive}`
+                }
+              >
+                {t("common.nav.profile")}
+              </NavLink>
+
+              <NavLink
+                to={PATHS.logout}
+                className={({ isActive }) =>
+                  `${linkBase} ${isActive ? linkActive : linkInactive}`
+                }
+              >
+                {t("auth.logout")}
+              </NavLink>
+              {/* Dodasz kolejne pozycje */}
+              {/* <NavLink to="/app/matches" ...>Matches</NavLink> */}
+            </nav>
+
+            {/* Footer sidebar */}
+            <div className="border-t border-border pt-4 text-xs text-muted">
+              v0.1 • VolleyFlow
+            </div>
+          </div>
+        </aside>
+
+        {/* CONTENT (scrolls) */}
+        <main className="min-w-0 overflow-y-auto">
+          <div className="p-6">
+            <Outlet />
+          </div>
+        </main>
+      </div>
     </div>
   );
 }

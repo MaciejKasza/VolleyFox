@@ -1,8 +1,0 @@
-export default function Teams() {
-  return (
-    <div>
-      <h1 className="text-3xl font-bold">Teams</h1>
-      <p className="mt-2 text-slate-600">Twoje drużyny.</p>
-    </div>
-  );
-}

@@ -1,18 +1,44 @@
 {
   "common": {
-    "appName": "VolleyFox",
-    "login": "Log in",
-    "logout": "Log out",
-    "register": "Sign up",
-    "email": "Email",
-    "password": "Password",
-    "dashboard": "Dashboard",
-    "teams": "Teams"
+    "appName": "VolleyFlow",
+     "appName1": "Volley",
+    "appName2": "Flow",
+    "nav":{
+      "dashboard": "Dashboard",
+      "callendar": "Callendar",
+      "activities": "Activities",
+      "profile": "Profile"
+    }
   },
   "auth": {
     "titleLogin": "Login",
     "titleRegister": "Register",
     "noAccount": "Don't have an account?",
-    "haveAccount": "Already have an account?"
+    "haveAccount": "Already have an account?",
+    "loginAccount": "Log in!",
+    "login": "Log in",
+    "register": "Sign up",
+    "logout": "Log out",
+    "email": "Email",
+    "password": "Password"
+  },
+  "onboardingCard": {
+    "header": "What would you like to do?",
+    "title": "You don't have any teams yet — choose one of the options below.",
+    "create": {
+      "title": "Create a team",
+      "description": "Create your own team and start managing the roster and matches.",
+      "button": "Create team"
+    },
+    "join": {
+      "title": "Join a team",
+      "description": "Have an invite link or code? Join an existing team.",
+      "button": "Join team"
+    },
+    "skip": {
+      "title": "Skip for now",
+      "description": "You can come back to this later. Continue in demo mode.",
+      "button": "Continue"
+    }
   }
 }

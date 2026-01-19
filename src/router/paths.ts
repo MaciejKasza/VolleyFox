@@ -3,6 +3,9 @@ export const PATHS = {
   auth: "/auth",
   login: "/auth/login",
   register: "/auth/register",
+  logout: "/auth/logout",
   app: "/app",
-  teams: "/app/teams",
+  callendar: "/app/callendar",
+  activities: "/app/activities",
+  profile: "/app/profile",
 } as const;

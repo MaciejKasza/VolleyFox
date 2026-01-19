@@ -1,18 +1,45 @@
 {
   "common": {
-    "appName": "VolleyFox",
-    "login": "Zaloguj",
-    "logout": "Wyloguj",
-    "register": "Zarejestruj się",
-    "email": "Email",
-    "password": "Hasło",
-    "dashboard": "Panel",
-    "teams": "Drużyny"
+    "appName": "VolleyFlow",
+    "appName1": "Volley",
+    "appName2": "Flow",    
+    "nav":{
+      "dashboard": "Dashboard",
+      "callendar": "Kalendarz",
+      "activities": "Aktywności",
+      "profile": "Profil"
+    }
   },
   "auth": {
     "titleLogin": "Logowanie",
     "titleRegister": "Rejestracja",
     "noAccount": "Nie masz konta?",
-    "haveAccount": "Masz konto?"
+    "haveAccount": "Masz konto?",
+    "loginAccount": "Zaloguj się!",
+    "register": "Zarejestruj się",
+    "login": "Zaloguj",
+     "logout": "Wyloguj",
+    "email": "Email",
+    "password": "Hasło"
+    
+  },
+  "onboardingCard": {
+    "header": "Co chcesz zrobić?",
+    "title":"Nie masz jeszcze żadnych drużyn — wybierz jedną z opcji poniżej.",
+    "create": {
+      "title": "Załóż drużynę",
+      "description": "Utwórz własną drużynę i zacznij zarządzać składem oraz meczami.",
+      "button": "Utwórz drużynę"
+    },
+     "join": {
+      "title": "Dołącz do drużyny",
+      "description": "Masz kod lub link zaproszenia? Dołącz do istniejącej drużyny.",
+      "button": "Dołącz do drużyny"
+    },
+     "skip": {
+      "title": "Pomiń",
+      "description": "Możesz wrócić do tego później. Przejdź do trybu demo.",
+      "button": "Przejdź dalej"
+    }
   }
 }

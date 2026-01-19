@@ -7,7 +7,8 @@ import RequireAuth from "./guards/RequireAuth";
 
 export const router = createBrowserRouter([
   { path: PATHS.root, element: <Navigate to={PATHS.app} replace /> },
-  authRoutes,
+
+  { children: [authRoutes] },
 
   // Guard dla całej aplikacji
   {
