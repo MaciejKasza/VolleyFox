@@ -84,7 +84,7 @@ export default function AppLayout() {
 
         {/* CONTENT (scrolls) */}
         <main className="min-w-0 overflow-y-auto">
-          <div className="p-6">
+          <div className="py-4 px-8">
             <Outlet />
           </div>
         </main>

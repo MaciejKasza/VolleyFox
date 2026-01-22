@@ -1,4 +1,7 @@
 import OnboardingChoice from "../../components/OnboardingChoice/OnboardingChoice";
+import Header from "../../components/pageHeader/Header";
+import type { TeamRow } from "../../components/teams/TeamsList";
+import TeamsList from "../../components/teams/TeamsList";
 
 type Team = {
   id: string;
@@ -7,7 +10,29 @@ type Team = {
 
 export default function Dashboard() {
   // na razie nic nie wiemy o drużynach:
-  const teams: Team[] = [{ id: "1", name: "dupa" }];
+  const teams: TeamRow[] = [
+    {
+      id: "1",
+      name: "Volley Club",
+      season: "2024/25",
+      role: "Owner",
+      lastActivity: "Mecz 2 dni temu",
+    },
+    {
+      id: "2",
+      name: "AZS Juniors",
+      season: "2024/25",
+      role: "Coach",
+      lastActivity: "Trening jutro",
+    },
+    {
+      id: "3",
+      name: "Sparta",
+      season: "2024/25",
+      role: "Player",
+      lastActivity: "—",
+    },
+  ];
 
   if (teams.length === 0) {
     return (
@@ -21,8 +46,13 @@ export default function Dashboard() {
 
   return (
     <div>
-      <h1 className="text-3xl font-extrabold">Dashboard</h1>
-      <p className="mt-2 text-muted">Masz {teams.length} drużyn(y).</p>
+      <Header title="Dasboard" />
+      <TeamsList
+        teams={teams}
+        onCreateTeam={() => console.log("create")}
+        onJoinTeam={() => console.log("join")}
+        onOpenTeam={(id) => console.log("open", id)}
+      />
     </div>
   );
 }
