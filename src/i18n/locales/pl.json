@@ -10,6 +10,21 @@
       "profile": "Profil"
     }
   },
+  "errors": {
+      "email": {
+        "required": "Email is required",
+        "invalid": "Enter a valid email address"
+      },
+      "password": {
+        "required": "Password is required",
+        "min": "Password must be at least 8 characters",
+        "max": "Password is too long"
+      },
+      "confirmPassword": {
+        "required": "Confirm your password",
+        "mismatch": "Passwords must match"
+      }
+  },
   "auth": {
     "titleLogin": "Logowanie",
     "titleRegister": "Rejestracja",
@@ -20,8 +35,8 @@
     "login": "Zaloguj",
      "logout": "Wyloguj",
     "email": "Email",
-    "password": "Hasło"
-    
+    "password": "Hasło",
+    "repeatPassword": "Powtórz hasło"
   },
   "onboardingCard": {
     "header": "Co chcesz zrobić?",

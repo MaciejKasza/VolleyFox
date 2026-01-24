@@ -10,6 +10,21 @@
       "profile": "Profile"
     }
   },
+  "errors": {
+      "email": {
+        "required": "Email is required",
+        "invalid": "Enter a valid email address"
+      },
+      "password": {
+        "required": "Password is required",
+        "min": "Password must be at least 8 characters",
+        "max": "Password is too long"
+      },
+      "confirmPassword": {
+        "required": "Confirm your password",
+        "mismatch": "Passwords must match"
+      }
+  },    
   "auth": {
     "titleLogin": "Login",
     "titleRegister": "Register",
@@ -20,7 +35,8 @@
     "register": "Sign up",
     "logout": "Log out",
     "email": "Email",
-    "password": "Password"
+    "password": "Password",
+    "repeatPassword": "Repeat password"
   },
   "onboardingCard": {
     "header": "What would you like to do?",

@@ -11,27 +11,27 @@ type Team = {
 export default function Dashboard() {
   // na razie nic nie wiemy o drużynach:
   const teams: TeamRow[] = [
-    {
-      id: "1",
-      name: "Volley Club",
-      season: "2024/25",
-      role: "Owner",
-      lastActivity: "Mecz 2 dni temu",
-    },
-    {
-      id: "2",
-      name: "AZS Juniors",
-      season: "2024/25",
-      role: "Coach",
-      lastActivity: "Trening jutro",
-    },
-    {
-      id: "3",
-      name: "Sparta",
-      season: "2024/25",
-      role: "Player",
-      lastActivity: "—",
-    },
+    // {
+    //   id: "1",
+    //   name: "Volley Club",
+    //   season: "2024/25",
+    //   role: "Owner",
+    //   lastActivity: "Mecz 2 dni temu",
+    // },
+    // {
+    //   id: "2",
+    //   name: "AZS Juniors",
+    //   season: "2024/25",
+    //   role: "Coach",
+    //   lastActivity: "Trening jutro",
+    // },
+    // {
+    //   id: "3",
+    //   name: "Sparta",
+    //   season: "2024/25",
+    //   role: "Player",
+    //   lastActivity: "—",
+    // },
   ];
 
   if (teams.length === 0) {
