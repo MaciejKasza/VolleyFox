@@ -31,8 +31,7 @@ export default function Login() {
   async function onSubmit(values: LoginFormValues) {
     // TODO: tu podepniesz API logowania
     console.log("login", values);
-
-    login();
+    await login(values.email, values.password);
     navigate(from, { replace: true });
   }
 

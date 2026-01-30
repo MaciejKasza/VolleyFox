@@ -6,10 +6,11 @@ import { PATHS } from "../../router/paths";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { registerSchema, type RegisterFormValues } from "../../validation/auth";
+import type { ApiError } from "../../services/http";
 
 export default function Register() {
   const { t } = useTranslation();
-  const { login } = useAuth();
+  const { registerAndLogin } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -30,12 +31,12 @@ export default function Register() {
   });
 
   async function onSubmit(values: RegisterFormValues) {
-    // TODO: tutaj później podepniesz API rejestracji
-    console.log("register", values);
-
-    // demo: na razie "logujemy" po rejestracji
-    login();
-    navigate(from, { replace: true });
+    try {
+      await registerAndLogin(values.email, values.password);
+      navigate(from, { replace: true });
+    } catch (error: ApiError | any) {
+      console.log(error.code, error.message);
+    }
   }
 
   const inputClass =
