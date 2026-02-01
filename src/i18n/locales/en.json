@@ -11,6 +11,7 @@
     }
   },
   "errors": {
+    "validation":{
       "email": {
         "required": "Email is required",
         "invalid": "Enter a valid email address"
@@ -24,6 +25,21 @@
         "required": "Confirm your password",
         "mismatch": "Passwords must match"
       }
+    },
+    "api":{
+        "HTTP_400": "Bad request. Please check your input and try again.",
+      "HTTP_401": "Your session has expired or you are not authorized. Please sign in again.",
+      "HTTP_403": "You do not have permission to perform this action.",
+      "HTTP_404": "Resource not found. Please check the address and try again.",
+      "HTTP_409": "A data conflict occurred. Your changes could not be saved.",
+      "HTTP_422": "Some fields are invalid. Please correct them and try again.",
+      "HTTP_429": "Too many requests. Please try again in a moment.",
+      "HTTP_500": "Server error. Please try again later.",
+      "HTTP_502": "Bad gateway. Please try again in a moment.",
+      "HTTP_503": "Service temporarily unavailable. Please try again later.",
+      "HTTP_504": "Request timed out. Please try again.",
+      "AUTH_INVALID_CREDENTIALS": "Invalid login or password"
+    }
   },    
   "auth": {
     "titleLogin": "Login",

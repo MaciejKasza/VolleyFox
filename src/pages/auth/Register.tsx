@@ -7,14 +7,20 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { registerSchema, type RegisterFormValues } from "../../validation/auth";
 import type { ApiError } from "../../services/http";
+import { useEffect } from "react";
 
 export default function Register() {
   const { t } = useTranslation();
-  const { registerAndLogin } = useAuth();
+  const { registerAndLogin, user } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
 
   const from = (location.state as any)?.from?.pathname || PATHS.app;
+  useEffect(() => {
+    if (user) {
+      navigate(PATHS.app);
+    }
+  }, [user]);
 
   const {
     register,

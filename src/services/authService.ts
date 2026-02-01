@@ -19,26 +19,23 @@ export type RegisterRequest = {
 
 // Dostosuj jeśli backend zwraca np. { accessToken: "..." }
 type LoginResponse = {
-  token: string;
+  jwtToken: string;
 };
 
 // Dostosuj jeśli backend zwraca np. { accessToken: "..." }
 type RegisterResponse = {
-  token: string;
+  jwtToken: string;
 };
 
 export const authService = {
   async login(payload: LoginRequest): Promise<void> {
-    console.log("req");
-
     const res = await http<LoginResponse>("/app/auth/login", {
       method: "POST",
       body: payload,
       auth: false,
     });
-    console.log(res);
 
-    authToken.set(res.token);
+    authToken.set(res.jwtToken);
   },
 
   async register(payload: RegisterRequest): Promise<void> {
@@ -64,8 +61,6 @@ export const authService = {
   },
 
   logout(): void {
-    console.log("logout");
-
     authToken.clear();
   },
 };

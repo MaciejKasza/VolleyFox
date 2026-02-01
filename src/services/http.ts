@@ -80,6 +80,7 @@ export async function http<T>(
     console.log(token);
 
     if (token) headers.Authorization = `Bearer ${token}`;
+    console.log(headers.Authorization);
   }
 
   let res: Response;
@@ -91,11 +92,10 @@ export async function http<T>(
       signal: opts.signal,
     });
   } catch (e) {
-    console.log(e);
+    console.log("HTTP Error:", e);
 
     throw new ApiError("Network error", "NETWORK");
   }
-  console.log("res", res);
 
   const data = await parseJsonSafe(res);
 
@@ -106,6 +106,7 @@ export async function http<T>(
     const code = backend?.errorCode ?? `HTTP_${res.status}`;
 
     const message = backend?.message ?? `Request failed (${res.status})`;
+    console.log(message, code, res.status, data);
 
     throw new ApiError(message, code, res.status, data);
   }

@@ -10,8 +10,8 @@ export const authRoutes = {
   element: <AuthLayout />,
   children: [
     { index: true, element: <Navigate to={PATHS.login} replace /> },
-    { path: "login", element: <Login /> },
-    { path: "register", element: <Register /> },
-    { path: "logout", element: <Logout /> },
+    { path: PATHS.login, element: <Login /> },
+    { path: PATHS.register, element: <Register /> },
+    { path: PATHS.logout, element: <Logout /> },
   ],
 };

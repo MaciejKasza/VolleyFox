@@ -40,10 +40,9 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
       try {
         const me = await authService.me();
+
         if (!cancelled) setUser(me);
       } catch (e) {
-        console.log("Cos poszło nie tak", e.code);
-
         // token nieważny / wygasł → wyloguj
         // if (e instanceof ApiError && e.code === "UNAUTHORIZED") {
         authService.logout();
@@ -82,8 +81,6 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   }
 
   function logout() {
-    console.log("authService.logout()");
-
     authService.logout();
     setUser(null);
   }

@@ -6,18 +6,26 @@ import { useAuth } from "../../contexts/auth/AuthContext";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { loginSchema, type LoginFormValues } from "../../validation/auth";
+import type { ApiError } from "../../services/http";
+import { useEffect } from "react";
 
 export default function Login() {
   const { t } = useTranslation();
-  const { login } = useAuth();
+  const { login, user } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
 
   const from = (location.state as any)?.from?.pathname || PATHS.app;
+  useEffect(() => {
+    if (user) {
+      navigate(PATHS.app);
+    }
+  }, [user]);
 
   const {
     register,
     handleSubmit,
+    setError,
     formState: { errors, isSubmitting },
   } = useForm<LoginFormValues>({
     resolver: zodResolver(loginSchema),
@@ -30,9 +38,17 @@ export default function Login() {
 
   async function onSubmit(values: LoginFormValues) {
     // TODO: tu podepniesz API logowania
-    console.log("login", values);
-    await login(values.email, values.password);
-    navigate(from, { replace: true });
+    try {
+      await login(values.email, values.password);
+      navigate(from, { replace: true });
+    } catch (e) {
+      const err = e as ApiError;
+      // Błąd globalny zwracany z API
+      setError("root", {
+        type: "server",
+        message: `errors.api.${err.code}`, // klucz i18n (polecane)
+      });
+    }
   }
 
   const inputClass =
@@ -43,6 +59,29 @@ export default function Login() {
       <h1 className="text-2xl font-bold">{t("auth.titleLogin")}</h1>
 
       <form className="mt-6 space-y-3" onSubmit={handleSubmit(onSubmit)}>
+        {errors.root?.message ? (
+          <div
+            role="alert"
+            className={[
+              "flex items-start gap-3 rounded-2xl",
+              "border border-red-500/40 bg-red-500/10",
+              "px-4 py-3",
+              "text-sm text-red-200",
+              "shadow-[0_0_0_1px_rgba(239,68,68,0.12)]",
+            ].join(" ")}
+          >
+            {/* icon */}
+            <span className="mt-0.5 inline-flex h-5 w-5 items-center justify-center rounded-full bg-red-500/20 text-red-200">
+              !
+            </span>
+
+            <div className="min-w-0">
+              <div className="mt-0.5 leading-relaxed">
+                {t(errors.root.message)}
+              </div>
+            </div>
+          </div>
+        ) : null}
         <div className="space-y-1">
           <input
             className={inputClass}

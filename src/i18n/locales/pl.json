@@ -11,6 +11,7 @@
     }
   },
   "errors": {
+    "validation": {
       "email": {
         "required": "Email is required",
         "invalid": "Enter a valid email address"
@@ -24,6 +25,21 @@
         "required": "Confirm your password",
         "mismatch": "Passwords must match"
       }
+    },
+    "api":{
+      "HTTP_400": "Nieprawidłowe żądanie. Sprawdź dane i spróbuj ponownie.",
+      "HTTP_401": "Sesja wygasła lub brak autoryzacji. Zaloguj się ponownie.",
+      "HTTP_403": "Nie masz uprawnień do wykonania tej akcji.",
+      "HTTP_404": "Nie znaleziono zasobu. Sprawdź adres i spróbuj ponownie.",
+      "HTTP_409": "Konflikt danych. Zmiany nie mogły zostać zapisane.",
+      "HTTP_422": "Niektóre pola zawierają błędy. Popraw je i spróbuj ponownie.",
+      "HTTP_429": "Zbyt wiele prób. Spróbuj ponownie za chwilę.",
+      "HTTP_500": "Błąd serwera. Spróbuj ponownie później.",
+      "HTTP_502": "Błąd bramki. Spróbuj ponownie za chwilę.",
+      "HTTP_503": "Usługa jest tymczasowo niedostępna. Spróbuj ponownie później.",
+      "HTTP_504": "Przekroczono limit czasu odpowiedzi. Spróbuj ponownie.",
+      "AUTH_INVALID_CREDENTIALS": "Błedny login lub hasło"
+    }
   },
   "auth": {
     "titleLogin": "Logowanie",
