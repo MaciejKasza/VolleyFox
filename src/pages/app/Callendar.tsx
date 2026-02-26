@@ -1,8 +1,15 @@
+import { useTranslation } from "react-i18next";
+import { Header } from "../../components/pageHeader/Header";
+
 export default function Callendar() {
+  const { t } = useTranslation();
+
   return (
     <div>
-      <h1 className="text-3xl font-bold">Callendar</h1>
-      <p className="mt-2 text-slate-600">Twoj Callendar.</p>
+      <Header
+        title={t("common.header.callendar")}
+        subtitle={t("common.header.callendarSubtitle")}
+      />
     </div>
   );
 }

@@ -2,28 +2,61 @@
   "common": {
     "appName": "VolleyFlow",
     "appName1": "Volley",
-    "appName2": "Flow",    
+    "appName2": "Flow", 
+    "error": "Błąd",   
     "nav":{
-      "dashboard": "Dashboard",
+      "dashboard": "Strona główna",
       "callendar": "Kalendarz",
       "activities": "Aktywności",
       "profile": "Profil"
-    }
+    },
+    "header":{
+      "dashboard": "Witaj w VolleyFlow!",
+      "dashboardSubtitle": "Zarządzaj swoją drużyną siatkarską z łatwością.",
+      "profile": "Twój profil",
+      "profileSubtitle": "Zarządzaj swoimi danymi i ustawieniami konta.",
+      "callendar": "Kalendarz",
+      "callendarSubtitle": "Zobacz nadchodzące mecze i treningi.",
+      "activities": "Aktywności",
+      "activitiesSubtitle": "Przeglądaj ostatnie wydarzenia i aktywności drużyny.",
+      "club": {
+        "dashboard": "Przegląd klubu",
+        "dashboardSubtitle": "Najważniejsze informacje w jednym miejscu",
+        "playersList": "Lista zawodników",
+        "playersListSubtitle": "Zarządzaj składem i danymi zawodników"
+      } 
+    }      
   },
   "errors": {
     "validation": {
       "email": {
-        "required": "Email is required",
-        "invalid": "Enter a valid email address"
+        "required": "Email jest wymagany",
+        "invalid": "Wprowadź poprawny email"
       },
       "password": {
-        "required": "Password is required",
-        "min": "Password must be at least 8 characters",
-        "max": "Password is too long"
+        "required": "Hasło jest wymagane",
+        "min": "Hasło musi mieć minimum 8 znaków",
+        "max": "Hasło jest zbyt długie"
       },
       "confirmPassword": {
-        "required": "Confirm your password",
+        "required": "Potwierdź hasło",
         "mismatch": "Passwords must match"
+      },
+      "club": {
+        "name": {
+          "required": "Nazwa klubu jest wymagana",
+          "min": "Nazwa klubu musi mieć co najmniej 2 znaki"
+        },
+        "city": {
+          "required": "Miasto jest wymagane",
+          "min": "Miasto musi mieć co najmniej 2 znaki"
+        },
+        "description": {
+          "max": "Opis jest zbyt długi (max 500 znaków)"
+        },
+        "logoUrl": {
+          "invalid": "Podaj poprawny URL do logo"
+        }
       }
     },
     "api":{
@@ -38,7 +71,9 @@
       "HTTP_502": "Błąd bramki. Spróbuj ponownie za chwilę.",
       "HTTP_503": "Usługa jest tymczasowo niedostępna. Spróbuj ponownie później.",
       "HTTP_504": "Przekroczono limit czasu odpowiedzi. Spróbuj ponownie.",
-      "AUTH_INVALID_CREDENTIALS": "Błedny login lub hasło"
+      "AUTH_INVALID_CREDENTIALS": "Błedny login lub hasło",
+      "EMAIL_ALREADY_EXISTS": "Konto dla tego adresu email juz istnieje",
+      "NETWORK": "Nie można połączyć sie z serwerem"
     }
   },
   "auth": {
@@ -71,6 +106,48 @@
       "title": "Pomiń",
       "description": "Możesz wrócić do tego później. Przejdź do trybu demo.",
       "button": "Przejdź dalej"
+    }
+  },
+  "createClub": {
+    "title":"Utwórz klub",
+    "header": "Dodaj podstawowe informacje o klubie. Później uzupełnisz skład i ustawienia.",
+    "name": "Nazwa klubu",
+    "namePlaceholder": "np. VolleyFlow",
+    "nameTip": "Nazwa widoczna dla członków i w zaproszeniach.",
+    "city": "Miasto",
+    "cityPlaceholder": "np. Kraków",
+    "description": "Opis klubu",
+    "descriptionPlaceholder": "Krótko opisz swój klub (opcjonalne)",
+    "descriptionTip": "Np. poziom, liga, godziny treningów, dla kogo jest klub.",
+    "descriptionPreview": "Dodaj krótki opis klubu, aby członkowie wiedzieli, czego się spodziewać.",
+    "url": "Link do logo",
+    "urlPlaceholder": "https://...",
+    "urlTip": "Tip: logo najlepiej wygląda jako kwadrat (np. 512×512).",
+    "buttonCreate": "Utwórz klub",
+    "buttonCancel": "Anuluj",
+    "preview": "Podgląd",
+    "imgAlt": "Logo klubu",
+    "logo": "LOGO",
+    "desc": "Opis"
+  },
+   "club": {
+    "dashboard": {
+      "settings": "Ustawienia",
+      "basicInfo": "Podstawowe informacje",
+      "overview": "Przegląd",
+      "status": "Status",
+      "players": "Zawodnicy",
+      "matchesThisMonth": "Mecze w tym miesiącu",
+      "attendance": "Frekwencja treningów",
+      "season": "Sezon",
+      "notifications": "Powiadomienia",
+      "nextMatch": "Najbliższy mecz",
+      "nextTraining": "Najbliższy trening",
+      "quickActions": "Szybkie akcje",
+      "addMatch": "Dodaj mecz",
+      "addTraining": "Dodaj trening",
+      "sendAnnouncement": "Wyślij ogłoszenie",
+      "activity": "Aktywność"
     }
   }
 }

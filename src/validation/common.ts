@@ -11,3 +11,6 @@ export const passwordSchema = z
   .min(1, "errors.validation.password.required")
   .min(8, "errors.validation.password.min")
   .max(72, "errors.validation.password.max");
+
+export const requiredText = (errorKey: string) =>
+  z.string().trim().min(1, errorKey);

@@ -3,8 +3,9 @@
     "appName": "VolleyFlow",
      "appName1": "Volley",
     "appName2": "Flow",
+    "error": "Error",  
     "nav":{
-      "dashboard": "Dashboard",
+      "dashboard": "Main Dashboard",
       "callendar": "Callendar",
       "activities": "Activities",
       "profile": "Profile"
@@ -24,6 +25,22 @@
       "confirmPassword": {
         "required": "Confirm your password",
         "mismatch": "Passwords must match"
+      },
+      "club": {
+        "name": {
+          "required": "Club name is required",
+          "min": "Club name must be at least 2 characters"
+        },
+        "city": {
+          "required": "City is required",
+          "min": "City must be at least 2 characters"
+        },
+        "description": {
+          "max": "Description is too long (max 500 characters)"
+        },
+        "logoUrl": {
+          "invalid": "Please enter a valid logo URL"
+        }
       }
     },
     "api":{
@@ -38,7 +55,8 @@
       "HTTP_502": "Bad gateway. Please try again in a moment.",
       "HTTP_503": "Service temporarily unavailable. Please try again later.",
       "HTTP_504": "Request timed out. Please try again.",
-      "AUTH_INVALID_CREDENTIALS": "Invalid login or password"
+      "AUTH_INVALID_CREDENTIALS": "Invalid login or password",
+      "EMAIL_ALREADY_EXISTS": "An account for this email address already exists."
     }
   },    
   "auth": {
@@ -72,5 +90,27 @@
       "description": "You can come back to this later. Continue in demo mode.",
       "button": "Continue"
     }
+  },
+   "createClub": {
+    "title":"Create club",
+    "header": "Add basic information about your club. You can complete the roster and settings later.",
+    "name": "Club name",
+    "namePlaceholder": "e.g. VolleyFlow",
+    "nameTip": "This name will be visible to members and in invitations.",
+    "city": "City",
+    "citynamePlaceholder": "e.g. Krakow",
+    "description": "Club description",
+    "descriptionPlaceholder": "Briefly describe your club (optional)",
+    "descriptionTip": "For example: level, league, training schedule, target players.",
+    "descriptionPreview": "Add a short description so members know what to expect.",
+    "url": "Logo URL",
+    "urlPlaceholder": "https://...",
+    "urlTip": "Tip: the logo looks best in a square format (e.g. 512×512).",
+    "buttonCreate": "Create club",
+    "buttonCancel": "Cancel",
+    "preview": "Preview",
+    "imgAlt": "Club logo",
+    "logo": "LOGO",
+    "desc": "Description"
   }
 }

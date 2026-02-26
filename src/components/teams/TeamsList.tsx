@@ -1,7 +1,18 @@
-type TeamRole = "Owner" | "Coach" | "Player";
+import { useEffect, useMemo, useState } from "react";
+import { RoleBadge } from "./RoleBadge";
+import { TeamIcon } from "./TeamIcon";
+import { teamService, type Team } from "../../services/teamService";
+import type { ApiError } from "../../services/http";
+import { useNavigate } from "react-router-dom";
+import { PATHS } from "../../router/paths";
+import { Loader } from "../common/Loader";
+import { useTranslation } from "react-i18next";
+
+export type TeamRole = "Owner" | "Coach" | "Player";
 
 export type TeamRow = {
   id: string;
+  logoUrl: string | null;
   name: string;
   season: string;
   role: TeamRole;
@@ -15,36 +26,79 @@ type Props = {
   onOpenTeam: (teamId: string) => void;
 };
 
-function RoleBadge({ role }: { role: TeamRole }) {
-  const base =
-    "inline-flex items-center rounded-full border px-2.5 py-1 text-xs font-semibold";
+export const TeamsList = () => {
+  const navigate = useNavigate();
+  const { t } = useTranslation();
 
-  // delikatne zróżnicowanie (bez nowych kolorów — zostajemy w Twoim theme)
-  const styles =
-    role === "Owner"
-      ? "border-[rgb(var(--accent))] text-[rgb(var(--accent))]"
-      : role === "Coach"
-        ? "border-border text-fg"
-        : "border-border text-muted";
+  const [teams, setTeams] = useState<TeamRow[]>([]);
+  const [isLoading, setLoading] = useState(true);
+  const [errorCode, setErrorCode] = useState<string | null>(null);
 
-  return <span className={`${base} ${styles}`}>{role}</span>;
-}
+  useEffect(() => {
+    let cancelled = false;
 
-function TeamIcon() {
-  // placeholder "logo" – można podmienić na <img />
-  return (
-    <div className="grid h-9 w-9 place-items-center rounded-xl border border-border bg-bg/50 text-white">
-      <span className="text-xs font-bold">VF</span>
-    </div>
-  );
-}
+    async function load() {
+      setLoading(true);
+      setErrorCode(null);
 
-export default function TeamsList({
-  teams,
-  onCreateTeam,
-  onJoinTeam,
-  onOpenTeam,
-}: Props) {
+      try {
+        const data = await teamService.list();
+        if (!cancelled) {
+          setTeams(
+            data.map((c) => ({
+              id: c.externalId,
+              logoUrl: c.logoUrl ?? null,
+              name: c.name,
+              season: "—",
+              role: "Owner",
+              lastActivity: "—",
+            })),
+          );
+        }
+
+        console.log("data", data);
+      } catch (e) {
+        console.log("data", e);
+        const err = e as ApiError;
+        if (!cancelled) setErrorCode(err.code ?? "UNKNOWN");
+      } finally {
+        if (!cancelled) setLoading(false);
+      }
+    }
+
+    load();
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+
+  const onCreateTeam = () => {
+    console.log("create team");
+    navigate(PATHS.createClub);
+  };
+
+  const onJoinTeam = () => {
+    console.log("join team");
+    // navigate(PATHS.joinClub);
+  };
+
+  const onOpenTeam = (id: string) => {
+    console.log("open team", id);
+    navigate(`${PATHS.clubDashboard(id)}`);
+  };
+
+  if (isLoading) {
+    return <Loader />;
+  }
+
+  if (errorCode) {
+    return (
+      <div className="rounded-3xl border border-border bg-surface p-6 shadow text-center">
+        <p className="text-sm text-muted">{t(`errors.api.${errorCode}`)}</p>
+      </div>
+    );
+  }
+
   return (
     <section className="rounded-3xl border border-border bg-surface p-6 shadow">
       {/* Header */}
@@ -108,7 +162,7 @@ export default function TeamsList({
               className="grid grid-cols-[1.6fr_0.7fr_0.8fr_1fr_0.5fr] gap-3 px-4 py-4"
             >
               <div className="flex items-center gap-3 min-w-0">
-                <TeamIcon />
+                <TeamIcon name={t.name} logoUrl={t.logoUrl} />
                 <div className="min-w-0">
                   <div className="truncate font-bold text-fg">{t.name}</div>
                 </div>
@@ -151,4 +205,4 @@ export default function TeamsList({
       </div>
     </section>
   );
-}
+};

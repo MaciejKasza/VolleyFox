@@ -1,43 +1,69 @@
-import OnboardingChoice from "../../components/OnboardingChoice/OnboardingChoice";
-import Header from "../../components/pageHeader/Header";
-import type { TeamRow } from "../../components/teams/TeamsList";
-import TeamsList from "../../components/teams/TeamsList";
+import { useEffect, useMemo, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import OnboardingChoice from "../../components/onboardingChoice/OnboardingChoice";
+import { Header } from "../../components/pageHeader/Header";
+import { TeamsList } from "../../components/teams/TeamsList";
+import { PATHS } from "../../router/paths";
 
-type Team = {
-  id: string;
-  name: string;
-};
+import { useTranslation } from "react-i18next";
 
 export default function Dashboard() {
-  // na razie nic nie wiemy o drużynach:
-  const teams: TeamRow[] = [
-    // {
-    //   id: "1",
-    //   name: "Volley Club",
-    //   season: "2024/25",
-    //   role: "Owner",
-    //   lastActivity: "Mecz 2 dni temu",
-    // },
-    // {
-    //   id: "2",
-    //   name: "AZS Juniors",
-    //   season: "2024/25",
-    //   role: "Coach",
-    //   lastActivity: "Trening jutro",
-    // },
-    // {
-    //   id: "3",
-    //   name: "Sparta",
-    //   season: "2024/25",
-    //   role: "Player",
-    //   lastActivity: "—",
-    // },
-  ];
+  const navigate = useNavigate();
+  const { t } = useTranslation();
 
-  if (teams.length === 0) {
+  const [isLoading, setLoading] = useState(true);
+  const [errorCode, setErrorCode] = useState<string | null>(null);
+  const [hasTeams, setHasTeams] = useState<boolean | null>(null);
+
+  // useEffect(() => {
+  //   let cancelled = false;
+
+  //   async function load() {
+  //     setLoading(true);
+  //     setErrorCode(null);
+
+  //     try {
+  //       const data = await teamService.hasTeams();
+  //       if (!cancelled) setClubs(data);
+  //     } catch (e) {
+  //       console.log("data", e);
+  //       const err = e as ApiError;
+  //       if (!cancelled) setErrorCode(err.code ?? "UNKNOWN");
+  //     } finally {
+  //       if (!cancelled) setLoading(false);
+  //     }
+  //   }
+
+  //   load();
+  //   return () => {
+  //     cancelled = true;
+  //   };
+  // }, []);
+
+  // // mapujemy kluby -> TeamRow (tymczasowo)
+  // const teams: TeamRow[] = useMemo(
+  //   () =>
+  //     clubs.map((c) => ({
+  //       id: c.externalId,
+  //       logoUrl: c.logoUrl ?? null,
+  //       name: c.name,
+  //       season: "—",
+  //       role: "Owner", // TODO: jak backend da role
+  //       lastActivity: "—",
+  //     })),
+  //   [clubs],
+  // );
+
+  // Loading state
+
+  // Error state
+
+  // Empty state -> onboarding
+  // TODO: sprawdzac czy ma drużyny
+  if (hasTeams === false) {
     return (
       <OnboardingChoice
-        onCreateTeam={() => console.log("create team")}
+        onCreateTeam={() => navigate(PATHS.createClub)}
         onJoinTeam={() => console.log("join team")}
         onSkip={() => console.log("skip")}
       />
@@ -46,13 +72,11 @@ export default function Dashboard() {
 
   return (
     <div>
-      <Header title="Dasboard" />
-      <TeamsList
-        teams={teams}
-        onCreateTeam={() => console.log("create")}
-        onJoinTeam={() => console.log("join")}
-        onOpenTeam={(id) => console.log("open", id)}
+      <Header
+        title={t("common.header.dashboard")}
+        subtitle={t("common.header.dashboardSubtitle")}
       />
+      <TeamsList />
     </div>
   );
 }

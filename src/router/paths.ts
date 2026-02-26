@@ -8,4 +8,7 @@ export const PATHS = {
   callendar: "/app/callendar",
   activities: "/app/activities",
   profile: "/app/profile",
+  createClub: "/app/createClub",
+  clubDashboard: (id: string) => `/app/clubs/${id}`,
+  clubSettings: (id: string) => `/app/clubs/${id}/settings`,
 } as const;

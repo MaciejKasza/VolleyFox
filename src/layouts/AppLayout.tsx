@@ -1,6 +1,7 @@
 import { useTranslation } from "react-i18next";
-import { NavLink, Outlet } from "react-router-dom";
+import { NavLink, Outlet, useMatch } from "react-router-dom";
 import { PATHS } from "../router/paths";
+import { useClub } from "../contexts/club/ClubContext";
 
 const linkBase =
   "flex items-center gap-3 rounded-lg px-3 py-2 text-md font-semibold transition";
@@ -9,6 +10,63 @@ const linkInactive = "text-muted hover:bg-surface2 hover:text-fg";
 
 export default function AppLayout() {
   const { t } = useTranslation();
+  const match = useMatch("app/clubs/:clubId/*");
+  const isClub = !!match;
+  const clubId = match?.params.clubId;
+  //const { club } = useClub(); // Pobierz dane klubu z kontekstu
+
+  const clubMenu = () => (
+    <>
+      <div className={`${linkBase} text-accent`}>Club Menu</div>
+      <div className="pl-4">
+        <NavLink
+          to={`clubs/${clubId}`}
+          end
+          className={({ isActive }) =>
+            `${linkBase} ${isActive ? linkActive : linkInactive}`
+          }
+        >
+          Main
+        </NavLink>
+        <NavLink
+          to={`clubs/${clubId}/players`}
+          end
+          className={({ isActive }) =>
+            `${linkBase} ${isActive ? linkActive : linkInactive}`
+          }
+        >
+          Lista graczy
+        </NavLink>
+        <NavLink
+          to={`clubs/${clubId}/statistics`}
+          end
+          className={({ isActive }) =>
+            `${linkBase} ${isActive ? linkActive : linkInactive}`
+          }
+        >
+          Statyski
+        </NavLink>
+        <NavLink
+          to={`clubs/${clubId}/calendar`}
+          end
+          className={({ isActive }) =>
+            `${linkBase} ${isActive ? linkActive : linkInactive}`
+          }
+        >
+          Kalendarz
+        </NavLink>
+        <NavLink
+          to={`clubs/${clubId}/settings`}
+          end
+          className={({ isActive }) =>
+            `${linkBase} ${isActive ? linkActive : linkInactive}`
+          }
+        >
+          Ustawienia
+        </NavLink>
+      </div>
+    </>
+  );
 
   return (
     <div className="h-screen bg-bg text-fg">
@@ -33,6 +91,8 @@ export default function AppLayout() {
               >
                 {t("common.nav.dashboard")}
               </NavLink>
+
+              {isClub && clubMenu()}
 
               <NavLink
                 to={PATHS.callendar}
