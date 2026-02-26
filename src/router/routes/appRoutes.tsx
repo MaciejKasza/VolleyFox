@@ -5,7 +5,7 @@ import Activities from "../../pages/app/Activities";
 import { PATHS } from "../paths";
 import Profile from "../../pages/app/Profile";
 import CreateClub from "../../pages/app/CreateClub";
-import ClubDashboard from "../../pages/app/club/ClubDasboard";
+import { ClubDashboard } from "../../pages/app/club/ClubDasboard";
 import { ClubProvider } from "../../contexts/club/ClubContext";
 import { Outlet } from "react-router-dom";
 import { ClubPlayersPage } from "../../pages/app/club/ClubPlayersList";
